@@ -7,7 +7,7 @@ load_dotenv()
 secret_key = pyotp.random_base32()
 totp = pyotp.TOTP(secret_key,interval=60)
 
-def send_otp() -> bool:
+def send_otp(phone_number : str) -> bool:
   account_sid = os.getenv("account_sid")
   auth_token =  os.getenv("auth_token")
 
@@ -20,7 +20,7 @@ def send_otp() -> bool:
     message = client.messages.create(
       from_='+16505819194',
       body=f'Your otp is {otp}',
-      to='+917415227505'
+      to='+91' + phone_number
   )
   except Exception as e:
     print('Exception occured',e)
