@@ -7,7 +7,7 @@ load_dotenv()
 secret_key = pyotp.random_base32()
 totp = pyotp.TOTP(secret_key,interval=60)
 
-def send_otp(phone_number : str) -> bool:
+def send_sms_otp(phone_number : str) -> bool:
   account_sid = os.getenv("account_sid")
   auth_token =  os.getenv("auth_token")
 
@@ -34,4 +34,4 @@ def verify_otp(otp : str) -> bool:
 
 
 if __name__ == '__main__':
-  pass
+  send_sms_otp('##########')
